@@ -1,0 +1,5 @@
+.go/
+.tools/
+.idea/
+*.log
+.journal
