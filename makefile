@@ -18,10 +18,6 @@ source_files = $(shell {\
 	git ls-files --others --exclude-standard -- '*.go'; \
 })
 
-#: Installs all pre-requisites.
-install: $(pre_reqs)
-.PHONY: install
-
 #: Runs all tests.
 test: | $(pre_reqs)
 	go test -cover -race -count=1 -test.shuffle=on ./...
