@@ -1,7 +1,3 @@
-go_dir := .go
-export GOBIN = $(PWD)/$(go_dir)/bin
-
-PATH := $(GOBIN):$(PATH)
 SHELL := /usr/bin/env bash -eu -o pipefail
 CPUS ?= $(shell (nproc --all || sysctl -n hw.ncpu) 2>/dev/null || echo 1)
 MAKEFLAGS += --warn-undefined-variables --output-sync=line --jobs $(CPUS)
@@ -14,12 +10,6 @@ MAKEFLAGS += --warn-undefined-variables --output-sync=line --jobs $(CPUS)
 	git config --get core.hooksPath > $@
 pre_reqs += .git/hooks.log
 to_trash += .git/hooks.log
-
-$(go_dir):
-	git clone --depth=1 https://go.googlesource.com/go $@
-	cd $@/src; ./make.bash
-pre_reqs += $(go_dir)
-to_trash += $(go_dir)
 
 # ---
 
